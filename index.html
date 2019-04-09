@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html>
+
+    <head>
+    	
+        <!-- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous"> -->
+    	<meta charset="utf-8">
+    	<link rel="stylesheet" type="text/css" href="style.css">
+    	<meta name="viewport" content="width=device-width, initial-scale=1">
+        <link href="https://fonts.googleapis.com/css?family=Gamja+Flower" rel="stylesheet">
+
+	    <title>Mohammad Alkel</title>
+
+   </head>
+
+    <body>
+
+    	<h1> Tic tac toe  </h1>
+
+        
+      <p id="message"> </p>
+      <div class=""> </div>
+       
+            
+        <table class=" " >
+
+            <tr>
+                <td class="square" id="r1" onClick="add(this)"></td>
+                <td class="square" id="r2" onClick="add(this)"></td>
+                <td class="square" id="r3" onClick="add(this)"></td>
+            </tr>
+            
+            <tr>
+                <td class="square" id="r4" onClick="add(this)"></td>
+                <td class="square" id="r5" onClick="add(this)"></td>
+                <td class="square" id="r6" onClick="add(this)"></td>
+            </tr>
+
+            <tr>
+                <td class="square" id="r7" onClick="add(this)"></td>
+                <td class="square" id="r8" onClick="add(this)"></td>
+                <td class="square" id="r9" onClick="add(this)"></td>
+            </tr>
+
+        </table>
+
+        <button id="btn">Restart Game</button>
+
+
+
+
+    	<script type="text/javascript">
+
+            let array = [];
+            let button = document.getElementById("btn");
+
+
+            function dontKnow (){
+                document.turn = "X"
+                setMessage("lets get started ! ! !")
+            }
+                dontKnow ()
+
+
+            function setMessage(msg){
+                document.getElementById("message").innerText = msg;
+
+            } 
+
+
+            function add(square){
+                if (square.innerHTML== ""){
+                       square.innerHTML = document.turn;
+                       changeTo ()
+                       winner ()
+                }
+            }
+
+
+            function changeTo (){
+                if (document.turn == "X"){
+                    document.turn = "O"    
+                } else {
+                    document.turn = "X"
+                }
+                setMessage( document.turn + " turn "  )
+                
+            }
+
+            function winner (){ 
+                let r1 = document.getElementById("r1").innerText;
+                let r2 = document.getElementById("r2").innerText;
+                let r3 = document.getElementById("r3").innerText;
+                let r4 = document.getElementById("r4").innerText;
+                let r5 = document.getElementById("r5").innerText;
+                let r6 = document.getElementById("r6").innerText;
+                let r7 = document.getElementById("r7").innerText;
+                let r8 = document.getElementById("r8").innerText;
+                let r9 = document.getElementById("r9").innerText;
+                
+                if ( (r1== r2 && r2 == r3 && r3 != "") || (r4== r5 && r5 == r6 && r6 != "") || (r7== r8 && r8 == r9 && r9 != "") || (r1== r4 && r4 == r7 && r7 != "") || (r2== r5 && r5 == r8 && r8 != "") || (r3== r6 && r6 == r9 && r9 != "") || (r1== r5 && r5 == r9 && r9 != "") || (r3== r5 && r5 == r7 && r7 != "") ){
+                    document.querySelector("table").classList.add("hid")
+                    document.querySelector("div").classList.add("box")
+                    changeTo ()
+
+                    document.querySelector("div").innerHTML = "<p class="+"inbox"+">"+ document.turn +"<br/>"+"  WINNER" +"</p>"
+                    setMessage( "congratulation ! ! !"  )
+
+                }
+
+                if ((r1 && r2&& r3&& r4&& r5&& r6&& r7&& r8&& r9) != ""){
+                    document.querySelector("table").classList.add("hid")
+                    document.querySelector("div").classList.add("box")
+                    changeTo ()
+
+                    document.querySelector("div").innerHTML = "<p class="+"inbox"+">"+"DRAW" +"</p>"
+                    setMessage( "Lets try again ! ! !"  )
+
+                }
+
+      
+            }
+
+            button.onclick = function (){ 
+
+
+
+                document.querySelector("table").classList.remove("hid")
+                document.querySelector("div").classList.remove("box")
+                // changeTo ()
+
+
+                if (document.querySelector("div").innerHTML != ""){
+                    document.querySelector("div").innerHTML = ""
+                    
+                }
+
+                for (let i = 0 ; i < 9 ; i++){
+                    document.getElementsByClassName("square")[i].innerHTML = ""
+
+                }
+                
+                setMessage( "lets get started ! ! !"  )
+
+            }
+
+            
+
+
+
+        </script>
+
+    </body>
+
+</html>
